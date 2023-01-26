@@ -24,7 +24,7 @@ function DocumentoElectronico() {
 
             <Form>
                 <Row>
-                    <h1>Documento Electrónico</h1>
+                    <h3>Documento Electrónico</h3>
                 </Row>
                 <Row>
                 &nbsp;
