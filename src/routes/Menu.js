@@ -25,19 +25,17 @@ function Menu() {
     const cerrarSesion=()=>{
         
 
-        cookies.remove('id', {path: '/'});
-        cookies.remove('apellido_paterno', {path: '/'});
-        cookies.remove('apellido_materno', {path: '/'});
-        cookies.remove('nombre', {path: '/'});
-        cookies.remove('correo', {path: '/'});
+        cookies.remove('codigo', {path: '/'});
         cookies.remove('username', {path: '/'});
         cookies.remove('password', {path: '/'});
+        cookies.remove('personacodigo', {path: '/'});
+        cookies.remove('estado', {path: '/'});
         navigate('/');
         //props.history.push('./');
     }
 
     useEffect(()=>{
-        if(!cookies.get('id')){
+        if(!cookies.get('username')){
             
             navigate('/');            
         }
@@ -55,9 +53,9 @@ function Menu() {
             <Navbar.Brand href="#home">Facturación Electrónica</Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
-                {cookies.get('id') ? <Navbar.Text>Hola: <a href="#login">{cookies.get('username')}</a></Navbar.Text> : null}
+                {cookies.get('username') ? <Navbar.Text>Hola: <a href="#login">{cookies.get('username')}</a></Navbar.Text> : null}
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                {cookies.get('id') ? <Button variant="outline-danger"   onClick={()=>cerrarSesion()}>Cerrar Sesión</Button>    : null}
+                {cookies.get('username') ? <Button variant="outline-danger"   onClick={()=>cerrarSesion()}>Cerrar Sesión</Button>    : null}
                    
             </Navbar.Collapse>
 
@@ -69,27 +67,42 @@ function Menu() {
                     <Form className="d-flex">
                         <Form.Control
                             type="search"
-                            placeholder="Search"
+                            placeholder="Buscar"
                             className="me-2"
                             aria-label="Search"
                         />
-                        <Button variant="outline-success">Search</Button>
+                        <Button variant="outline-success">Buscar</Button>
                     </Form>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                        <Nav.Link href="/principal">Home</Nav.Link>
-                        <Nav.Link href="/documentoelectronico" >Documento Electrónico</Nav.Link>
+                        <Nav.Link href="/principal">Inicio</Nav.Link>
                         <NavDropdown
-                            title="Dropdown"
+                            title="Personas"
                             id={`offcanvasNavbarDropdown-expand-xxl`}
                         >
-                            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">
-                            Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action5">
-                            Something else here
-                            </NavDropdown.Item>
+                            <NavDropdown.Item href="/management/persona">Personas</NavDropdown.Item>
+                            
+                        </NavDropdown>
+                        <Nav.Link href="/documentoelectronico" >Documento Electrónico</Nav.Link>
+                        <NavDropdown
+                            title="Inventario"
+                            id={`offcanvasNavbarDropdown-expand-xxl`}
+                        >
+                            <NavDropdown.Item href="#action3">Productos</NavDropdown.Item>
+                            
+                        </NavDropdown>
+                        <NavDropdown
+                            title="Reportes"
+                            id={`offcanvasNavbarDropdown-expand-xxl`}
+                        >
+                            <NavDropdown.Item href="#action5">Reportes Generales</NavDropdown.Item>
+                            
+                        </NavDropdown>
+                        <NavDropdown
+                            title="Configuraciones"
+                            id={`offcanvasNavbarDropdown-expand-xxl`}
+                        >
+                            <NavDropdown.Item href="#action5">Parametros Generales</NavDropdown.Item>
+                            
                         </NavDropdown>
                     </Nav>
                         

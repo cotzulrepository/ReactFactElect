@@ -33,14 +33,12 @@ const [form, setForm]=useState({
     }).then(response=>{
       if(response.length>0){
         var respuesta=response[0];
-        cookies.set('id', respuesta.id, {path: '/'});
-        cookies.set('apellido_paterno', respuesta.apellido_paterno, {path: '/'});
-        cookies.set('apellido_materno', respuesta.apellido_materno, {path: '/'});
-        cookies.set('nombre', respuesta.nombre, {path: '/'});
-        cookies.set('correo', respuesta.correo, {path: '/'});
+        cookies.set('codigo', respuesta.codigo, {path: '/'});
         cookies.set('username', respuesta.username, {path: '/'});
         cookies.set('password', respuesta.password, {path: '/'});
-        alert("Bienvenido: "+respuesta.nombre+" "+respuesta.apellido_paterno);
+        cookies.set('personacodigo', respuesta.personacodigo, {path: '/'});
+        cookies.set('estado', respuesta.estado, {path: '/'});
+        alert("Bienvenido: "+respuesta.username);
         
         navigate('/menu');
         //props.history.push('/menu');

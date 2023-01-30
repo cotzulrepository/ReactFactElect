@@ -169,39 +169,55 @@ function DocumentoElectronico() {
                 <Table striped>
                         <thead>
                             <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th></th>
+                            <th>Cantidad</th>
+                            <th>Producto</th>
+                            <th>Unidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Imp. Retención</th>
+                            <th>IVA</th>
+                            <th>Descuento %</th>
+                            <th>Descuento</th>
+                            <th>Subtotal</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                            <td></td>
                             <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>Parlante Bose</td>
+                            <td>UND</td>
+                            <td>$ 300.00</td>
+                            <td></td>
+                            <td>12%</td>
+                            <td>5%</td>
+                            <td>$ 15.00</td>
+                            <td>$ 324.00</td>
                             </tr>
                             <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td></td>
+                            <td>1</td>
+                            <td>Parlante Bose</td>
+                            <td>UND</td>
+                            <td>$ 300.00</td>
+                            <td></td>
+                            <td>12%</td>
+                            <td>5%</td>
+                            <td>$ 15.00</td>
+                            <td>$ 324.00</td>
                             </tr>
                             <tr>
-                            <td>3</td>
-                            <td colSpan={2}>Larry the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
-                            <tr>
-                            <td>3</td>
-                            <td colSpan={2}>Larry the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
-                            <tr>
-                            <td>3</td>
-                            <td colSpan={2}>Larry the Bird</td>
-                            <td>@twitter</td>
+                            <td></td>
+                            <td>1</td>
+                            <td>Parlante Bose</td>
+                            <td>UND</td>
+                            <td>$ 300.00</td>
+                            <td></td>
+                            <td>12%</td>
+                            <td>5%</td>
+                            <td>$ 15.00</td>
+                            <td>$ 324.00</td>
                             </tr>
                         </tbody>
                 </Table>
