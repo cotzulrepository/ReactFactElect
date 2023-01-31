@@ -10,6 +10,8 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 
+import { FaRegSave } from "react-icons/fa";
+
 
 
 
@@ -24,7 +26,6 @@ function Menu() {
 
     const cerrarSesion=()=>{
         
-
         cookies.remove('codigo', {path: '/'});
         cookies.remove('username', {path: '/'});
         cookies.remove('password', {path: '/'});
@@ -43,6 +44,8 @@ function Menu() {
 
     return (
         <>
+
+
        
         <Navbar expand="lg" variant="light" bg="light">
             <Container>
@@ -75,12 +78,15 @@ function Menu() {
                     </Form>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
                         <Nav.Link href="/principal">Inicio</Nav.Link>
+                        
                         <NavDropdown
                             title="Personas"
                             id={`offcanvasNavbarDropdown-expand-xxl`}
-                        >
-                            <NavDropdown.Item href="/management/persona">Personas</NavDropdown.Item>
                             
+                        >                            
+
+                            <NavDropdown.Item href="/management/persona">Personas</NavDropdown.Item>
+
                         </NavDropdown>
                         <Nav.Link href="/documentoelectronico" >Documento Electrónico</Nav.Link>
                         <NavDropdown

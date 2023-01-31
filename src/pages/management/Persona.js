@@ -9,7 +9,7 @@ import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import { FaPlus } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
-
+import CrearPersona from './CrearPersona';
 
 function Persona() {
   let active = 1;
@@ -24,7 +24,6 @@ function Persona() {
 
   return (
     <>
-    
       <Container>
         <Form>
           <Row>
@@ -32,10 +31,12 @@ function Persona() {
               <h3>Personas</h3>
             </Col>
             <Col sm={2}>
-              <Button variant="success">
-              <FaPlus/>
+              <Button href="./CrearPersona" variant="success">
+                <FaPlus />
               </Button>
-              <Button variant="outline-danger"><FaTrash/></Button>
+              <Button variant="outline-danger">
+                <FaTrash />
+              </Button>
             </Col>
           </Row>
           <Row>&nbsp;</Row>
@@ -49,7 +50,7 @@ function Persona() {
                     <Col xs={3}>
                       <Form.Group
                         as={Row}
-                        className="mb-3"
+                        className="mb-2"
                         controlId="formHorizontalEmail"
                       >
                         <Form.Label column sm={4}>
@@ -68,14 +69,14 @@ function Persona() {
                     <Col>
                       <Form.Group
                         as={Row}
-                        className="mb-3"
+                        className="mb-2"
                         controlId="formHorizontalEmail"
                       >
                         <Form.Label column sm={4}>
                           Rol :
                         </Form.Label>
                         <Col sm={8}>
-                          <Form.Select className="mb-2">
+                          <Form.Select >
                             <option>Todos</option>
                             <option>Cliente</option>
                             <option>Proveedor</option>
@@ -88,14 +89,14 @@ function Persona() {
                     <Col>
                       <Form.Group
                         as={Row}
-                        className="mb-3"
+                        className="mb-2"
                         controlId="formHorizontalEmail"
                       >
                         <Form.Label column sm={4}>
                           Tipo :
                         </Form.Label>
                         <Col sm={8}>
-                          <Form.Select className="mb-2">
+                          <Form.Select >
                             <option>Todos</option>
                             <option>Natural</option>
                             <option>Jurídica</option>
@@ -107,20 +108,37 @@ function Persona() {
                     <Col>
                       <Form.Group
                         as={Row}
-                        className="mb-3"
+                        className="mb-2"
                         controlId="formHorizontalEmail"
                       >
-                        <Form.Label column sm={4}>
+                        <Form.Label column sm={5}>
                           Estado :
                         </Form.Label>
-                        <Col sm={8}>
-                          <Form.Select className="mb-2">
+                        <Col sm={7}>
+                          <Form.Select >
                             <option>Todos</option>
                             <option>Activo</option>
                             <option>Inactivo</option>
                           </Form.Select>
                         </Col>
                       </Form.Group>
+                    </Col>
+                    <Col>
+                      <Form.Group
+                        as={Row}
+                        className="mb-1"
+                        controlId="formHorizontalEmail"
+                      >
+                        <Form.Label column sm={3}>
+                        </Form.Label>
+                        <Col sm={9}>
+                        <Button variant="outline-primary">Buscar</Button>
+
+                        </Col>
+                       
+                         
+                      </Form.Group>
+                      
                     </Col>
                   </Row>
                 </Accordion.Body>
