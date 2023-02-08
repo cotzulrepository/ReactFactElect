@@ -82,7 +82,7 @@ function CrearPersona() {
 
     const newPersona = await callEndpoint(personaService(persona.data));
     dispatch(createPersona(createPersonaAdapter(newPersona)));
-    
+
     //dispatch(resetPersona());
     alert("Persona Ingresada");
   };
@@ -217,7 +217,224 @@ function CrearPersona() {
               </Form.Group>
             </Col>
           </Row>
-         
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalNombreComercial"
+              >
+                <Form.Label column sm={3}>
+                  Nombre Comercial :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Control type="text" label="" />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalTelefonos"
+              >
+                <Form.Label column sm={3}>
+                  Teléfonos :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Control type="text" label="" />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalDireccion"
+              >
+                <Form.Label column sm={3}>
+                  Dirección :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Control type="text" label="" />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalProvincia"
+              >
+                <Form.Label column sm={3}>
+                  Provincia :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Select className="mb-2" defaultValue="-">
+                    <option>-</option>
+                  </Form.Select>
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalCanton"
+              >
+                <Form.Label column sm={3}>
+                  Cantón :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Select className="mb-2" defaultValue="-">
+                    <option>-</option>
+                  </Form.Select>
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalParroquia"
+              >
+                <Form.Label column sm={3}>
+                  Parroquia :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Control type="text" label="" />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalSexo"
+              >
+                <Form.Label column sm={3}>
+                  Sexo :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Select className="mb-2" defaultValue="-">
+                    <option>-</option>
+                  </Form.Select>
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalEstadoCivil"
+              >
+                <Form.Label column sm={3}>
+                  Estado Civil :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Select className="mb-2" defaultValue="-">
+                    <option>-</option>
+                  </Form.Select>
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalOtrosIngresos"
+              >
+                <Form.Label column sm={3}>
+                  Otros Ingresos :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Select className="mb-2" defaultValue="-">
+                    <option>-</option>
+                  </Form.Select>
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalExtranjero"
+              >
+                <Form.Label column sm={3}>
+                  Extranjero :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Check type="checkbox" label="" />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalPersonaAsociada"
+              >
+                <Form.Label column sm={3}>
+                  Persona Asociada :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Control type="text" label="" />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalCategoria"
+              >
+                <Form.Label column sm={3}>
+                  Categoría :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Control type="text" label="" />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="right-align">
+              <Form.Group
+                as={Row}
+                className="mb-12"
+                controlId="formHorizontalEmail"
+              >
+                <Form.Label column sm={3}>
+                  Email :
+                </Form.Label>
+                <Col sm={4}>
+                  <Form.Control type="text" label="" />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Row>
         </Form>
       </Container>
       <br />
