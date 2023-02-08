@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect,  useState } from "react";
+import axios from "axios";
 import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -8,12 +9,55 @@ import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import { FaPlus } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa";
-import CrearPersona from './CrearPersona';
+import { FaRegListAlt } from "react-icons/fa";
+
+
 
 function Persona() {
-  let active = 1;
-  let items = [];
+
+
+  const url = "https://localhost:44322/api/personas";
+
+
+
+
+
+  const [personas, setPersonas] = useState([]);
+  const [codigo, SetCodigo] = useState();
+  const [nombre, setNombre] = useState();
+  const [ruc, setRuc] = useState();
+  const [cedula, setCedula] = useState();
+  const [estado, setEstado] = useState();
+  const [nombrecomercial, setNombreComercial] = useState();
+  const [tipo, setTipo] = useState();
+  const [especial, setEspecial] = useState();
+  const [telefono, setTelefono] = useState();
+  const [direccion, setDireccion] = useState();
+  const [provincia, setProvincia] = useState();
+  const [ciudad, setCiudad] = useState();
+  const [genero, setGenero] = useState();
+  const [estadocivil, setEstadoCivil] = useState();
+  const [email, setEmail] = useState();
+  const [personaasociadaid, setPersonaAsociadaId] = useState();
+  const [usuarioing, setUsuarioIng] = useState();
+  const [fechaing, setFechaIng] = useState();
+  const [usuariomod, setUsuarioMod] = useState();
+  const [fechamod, setFechaMod] = useState();
+  const [usuarioelim, setUsuarioElim] = useState();
+  const [fechaelim, setFechaElim] = useState();
+
+
+  const [findNombre, setFindNombre] = useState('');
+  const findNombreChange = (event) => {
+    setFindNombre(event.target.value);
+  };
+
+  const [findEstado, setFindEstado] = useState('');
+  const findEstadoChange = (event) => {
+    setFindEstado(event.target.value);
+  };
+
+/*
   for (let number = 1; number <= 5; number++) {
     items.push(
       <Pagination.Item key={number} active={number === active}>
@@ -21,6 +65,19 @@ function Persona() {
       </Pagination.Item>
     );
   }
+  <Pagination size="sm">{items}</Pagination>
+*/
+
+  useEffect(() => {
+    getPersonas();
+  }, []);
+
+  const getPersonas = async () => {
+    const respuesta = await axios.get(url);
+    setPersonas(respuesta.data);
+  };
+
+  
 
   return (
     <>
@@ -31,11 +88,11 @@ function Persona() {
               <h3>Personas</h3>
             </Col>
             <Col sm={2}>
-              <Button href="./CrearPersona" variant="success">
+              <Button href="./CrearPersona" variant="outline-success">
                 <FaPlus />
               </Button>
-              <Button variant="outline-danger">
-                <FaTrash />
+              <Button variant="outline-primary">
+                <FaRegListAlt />
               </Button>
             </Col>
           </Row>
@@ -58,9 +115,10 @@ function Persona() {
                         </Form.Label>
                         <Col sm={8}>
                           <Form.Control
+                            onChange={findNombreChange}
                             type="text"
-                            name="nombre"
-                            placeholder="Nombre"
+                            name="findNombre"
+                            placeholder="findNombre"
                           />
                         </Col>
                       </Form.Group>
@@ -76,7 +134,7 @@ function Persona() {
                           Rol :
                         </Form.Label>
                         <Col sm={8}>
-                          <Form.Select >
+                          <Form.Select>
                             <option>Todos</option>
                             <option>Cliente</option>
                             <option>Proveedor</option>
@@ -96,7 +154,7 @@ function Persona() {
                           Tipo :
                         </Form.Label>
                         <Col sm={8}>
-                          <Form.Select >
+                          <Form.Select>
                             <option>Todos</option>
                             <option>Natural</option>
                             <option>Jurídica</option>
@@ -115,31 +173,15 @@ function Persona() {
                           Estado :
                         </Form.Label>
                         <Col sm={7}>
-                          <Form.Select >
-                            <option>Todos</option>
-                            <option>Activo</option>
-                            <option>Inactivo</option>
+                          <Form.Select onChange={findEstadoChange}>
+                            <option value="T">Todos</option>
+                            <option value="A">Activo</option>
+                            <option value="I">Inactivo</option>
                           </Form.Select>
                         </Col>
                       </Form.Group>
                     </Col>
-                    <Col>
-                      <Form.Group
-                        as={Row}
-                        className="mb-1"
-                        controlId="formHorizontalEmail"
-                      >
-                        <Form.Label column sm={3}>
-                        </Form.Label>
-                        <Col sm={9}>
-                        <Button variant="outline-primary">Buscar</Button>
-
-                        </Col>
-                       
-                         
-                      </Form.Group>
-                      
-                    </Col>
+                    
                   </Row>
                 </Accordion.Body>
               </Accordion.Item>
@@ -160,20 +202,30 @@ function Persona() {
                   <th>Estado</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Form.Check type="checkbox" label="" />
-                  </td>
-                  <td></td>
-                  <td>9999999999999</td>
-                  <td>Consumidor Final</td>
-                  <td>Consumidor Final</td>
-                  <td>Activo</td>
-                </tr>
+              <tbody id="registrosTabla">
+              
+
+                {personas
+                    .filter(item =>item.nombre.toUpperCase().includes(findNombre.toUpperCase()))
+                    .filter(item =>item.estado.includes(findEstado == "T" ? item.estado : findEstado))
+                    .map((personas, codigo) => {
+                  return (
+                    <tr key={personas.codigo}>
+                      <td>
+                        <Form.Check type="checkbox" label="" />
+                      </td>
+                      <td></td>
+                      <td>
+                        {personas.cedula}
+                      </td>
+                      <td>{personas.nombre}</td>
+                      <td>{personas.nombrecomercial}</td>
+                      <td>{personas.estado}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </Table>
-            <Pagination size="sm">{items}</Pagination>
           </Row>
         </Form>
       </Container>

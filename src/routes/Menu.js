@@ -100,7 +100,7 @@ function Menu() {
                             title="Reportes"
                             id={`offcanvasNavbarDropdown-expand-xxl`}
                         >
-                            <NavDropdown.Item href="#action5">Reportes Generales</NavDropdown.Item>
+                            <NavDropdown.Item href="/personas/persona">Reportes Generales</NavDropdown.Item>
                             
                         </NavDropdown>
                         <NavDropdown
