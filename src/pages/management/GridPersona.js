@@ -1,4 +1,4 @@
-import React, { useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
@@ -8,19 +8,31 @@ import Accordion from "react-bootstrap/Accordion";
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTrash } from "react-icons/fa";
 import { FaRegListAlt } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { personaSelectService } from "../../services/public.service";
+import { createPersonaAdapter } from "../../adapters";
+import Cookies from "universal-cookie";
+import { useFetchAndLoad } from "../../hooks";
+import { personaService } from "../../services/public.service";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../../redux/store";
+import {
+  createPersona,
+  modifyPersona,
+  resetPersona,
+} from "../../redux/states/persona";
+import FormPersona from "./FormPersona";
 
-
-
-function Persona() {
+function GridPersona({gridProp}) {
+  const cookies = new Cookies();
+  const dispatch = useDispatch();
+  const personaState = useSelector((store: AppStore) => store.persona);
+  const { loading, callEndpoint } = useFetchAndLoad();
 
 
   const url = "https://localhost:44322/api/personas";
-
-
-
-
 
   const [personas, setPersonas] = useState([]);
   const [codigo, SetCodigo] = useState();
@@ -46,18 +58,17 @@ function Persona() {
   const [usuarioelim, setUsuarioElim] = useState();
   const [fechaelim, setFechaElim] = useState();
 
-
-  const [findNombre, setFindNombre] = useState('');
+  const [findNombre, setFindNombre] = useState("");
   const findNombreChange = (event) => {
     setFindNombre(event.target.value);
   };
 
-  const [findEstado, setFindEstado] = useState('');
+  const [findEstado, setFindEstado] = useState("");
   const findEstadoChange = (event) => {
     setFindEstado(event.target.value);
   };
 
-/*
+  /*
   for (let number = 1; number <= 5; number++) {
     items.push(
       <Pagination.Item key={number} active={number === active}>
@@ -77,27 +88,16 @@ function Persona() {
     setPersonas(respuesta.data);
   };
 
-  
+
+  const formularioPersona = () => {
+    gridProp(true);
+  };
+
 
   return (
     <>
       <Container>
         <Form>
-          <Row>
-            <Col sm={10}>
-              <h3>Personas</h3>
-            </Col>
-            <Col sm={2}>
-              <Button href="./CrearPersona" variant="outline-success">
-                <FaPlus />
-              </Button>
-              <Button variant="outline-primary">
-                <FaRegListAlt />
-              </Button>
-            </Col>
-          </Row>
-          <Row>&nbsp;</Row>
-
           <Row>
             <Accordion defaultActiveKey="0" flush>
               <Accordion.Item eventKey="0">
@@ -181,7 +181,6 @@ function Persona() {
                         </Col>
                       </Form.Group>
                     </Col>
-                    
                   </Row>
                 </Accordion.Body>
               </Accordion.Item>
@@ -193,37 +192,51 @@ function Persona() {
               <thead>
                 <tr>
                   <th>
-                    <Form.Check type="checkbox" label="" />
+                    
                   </th>
-                  <th></th>
+                  
                   <th>Identificación</th>
                   <th>Razón Social</th>
                   <th>Nombre Comercial</th>
                   <th>Estado</th>
+                  <th>
+
+                  </th>
                 </tr>
               </thead>
               <tbody id="registrosTabla">
-              
-
                 {personas
-                    .filter(item =>item.nombre.toUpperCase().includes(findNombre.toUpperCase()))
-                    .filter(item =>item.estado.includes(findEstado == "T" ? item.estado : findEstado))
-                    .map((personas, codigo) => {
-                  return (
-                    <tr key={personas.codigo}>
-                      <td>
-                        <Form.Check type="checkbox" label="" />
-                      </td>
-                      <td></td>
-                      <td>
-                        {personas.cedula}
-                      </td>
-                      <td>{personas.nombre}</td>
-                      <td>{personas.nombrecomercial}</td>
-                      <td>{personas.estado}</td>
-                    </tr>
-                  );
-                })}
+                  .filter((item) =>
+                    item.nombre.toUpperCase().includes(findNombre.toUpperCase())
+                  )
+                  .filter((item) =>
+                    item.estado.includes(
+                      findEstado == "T" ? item.estado : findEstado
+                    )
+                  )
+                  .map((personas, codigo) => {
+                    return (
+                      <tr key={personas.codigo}>
+                        <td>
+                          <Button variant="outline-success" onClick={formularioPersona}>
+                            <FaEdit />
+                            &nbsp;&nbsp;Editar
+                          </Button>
+                        </td>
+                        
+                        <td>{personas.cedula}</td>
+                        <td>{personas.nombre}</td>
+                        <td>{personas.nombrecomercial}</td>
+                        <td>{personas.estado}</td>
+                        <td>
+                          <Button variant="outline-danger" >
+                            <FaTrash />
+                            &nbsp;&nbsp;Eliminar
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </Table>
           </Row>
@@ -233,4 +246,4 @@ function Persona() {
   );
 }
 
-export default Persona;
+export default GridPersona;

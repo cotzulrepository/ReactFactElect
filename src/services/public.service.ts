@@ -9,3 +9,12 @@ export const personaService = (persona : Persona) => {
     controller
   };
 };
+
+
+export const personaSelectService = (codigo : number) => {
+  const controller = loadAbort();
+  return {
+    call: axios.post<Persona>('https://localhost:44322/api/personas', codigo , { signal: controller.signal }),
+    controller
+  };
+};

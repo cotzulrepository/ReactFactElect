@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import GridPersona from "./GridPersona";
+import GridPersona from "./GridPersonaAnt";
 import EditComponent from "./EditComponent";
 import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";

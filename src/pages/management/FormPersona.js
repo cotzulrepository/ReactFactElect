@@ -35,7 +35,7 @@ function CustomToggle({ children, eventKey }) {
   );
 }
 
-function CrearPersona() {
+function FormPersona() {
   const cookies = new Cookies();
   const dispatch = useDispatch();
   const personaState = useSelector((store: AppStore) => store.persona);
@@ -91,13 +91,7 @@ function CrearPersona() {
     <>
       <Container>
         <Form>
-          <Row>
-            <Col sm={10}>
-              <h3>Personas</h3>
-            </Col>
-          </Row>
-          <Row>&nbsp;</Row>
-
+          
           <Row>
             <Col className="right-align">
               <Form.Group
@@ -501,4 +495,4 @@ function CrearPersona() {
   );
 }
 
-export default CrearPersona;
+export default FormPersona;
